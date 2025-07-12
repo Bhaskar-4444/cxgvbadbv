@@ -110,3 +110,179 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roy Tours - Explore India</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8fff5;
+    }
+    header {
+      background-color: #336633;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header img {
+      height: 50px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+    .hero-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+    .hero-slide.active {
+      display: block;
+    }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-text {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 22px;
+      text-align: center;
+    }
+    .slider-buttons {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .slider-buttons button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      background: #336633;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+    .highlight {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    footer {
+      background-color: #336633;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <img src="logo roy tours.png" alt="Roy Tours Logo" />
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="packages.html">Packages</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <a class="hero-slide active" href="coming-soon.html">
+      <img src="slide (2).jpg" alt="Rajasthan" />
+      <div class="hero-text">Welcome to Diverse State - Rajasthan</div>
+    </a>
+    <a class="hero-slide" href="coming-soon.html">
+      <img src="slide (3).jpg" alt="Himalayas" />
+      <div class="hero-text">Mystic Heights - Himalayas</div>
+    </a>
+    <a class="hero-slide" href="coming-soon.html">
+      <img src="slide (4).jpg" alt="Temples" />
+      <div class="hero-text">Sacred Temples of the South</div>
+    </a>
+    <a class="hero-slide" href="coming-soon.html">
+      <img src="slide (6).jpg" alt="Desert" />
+      <div class="hero-text">Golden Desert Trails</div>
+    </a>
+    <div class="slider-buttons">
+      <button onclick="prevSlide()">⟨ Prev</button>
+      <button onclick="nextSlide()">Next ⟩</button>
+    </div>
+  </div>
+
+  <div class="section highlight">
+    <h2>Welcome to Roy Tours</h2>
+    <p>Experience India like never before! Explore cultural heritage, vibrant villages, scenic hills, and more with our customized travel packages.</p>
+  </div>
+
+  <div class="section highlight">
+    <h2>Why Choose Roy Tours</h2>
+    <p>We bring you the best of India with trusted local guides, budget-friendly packages, and unforgettable experiences. Our passion is to help you travel smarter, safer, and deeper into India’s beauty.</p>
+  </div>
+
+  <footer>
+    &copy; 2025 Roy Tours | All Rights Reserved
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".hero-slide");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) slide.classList.add("active");
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 4000);
+  </script>
+</body>
+</html>
