@@ -1,8 +1,8 @@
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact - Roy Tours</title>
   <style>
     body {
@@ -27,9 +27,6 @@
     }
     header h1 {
       font-size: 28px;
-    }
-    nav {
-      margin-top: 10px;
     }
     nav a {
       color: white;
@@ -78,16 +75,22 @@
     input[type="submit"]:hover {
       background-color: #2b552b;
     }
-    .contact-info {
+    .contact-info, .map-section {
       margin-top: 40px;
       background: #ffffff;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
-    .contact-info h3 {
+    .contact-info h3, .map-section h3 {
       margin-top: 0;
       color: #336633;
+    }
+    #mapContainer {
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      margin-top: 10px;
     }
     footer {
       background-color: #336633;
@@ -138,11 +141,44 @@
     <p><strong>WhatsApp:</strong> <a href="https://wa.me/917050462102" target="_blank">Chat on WhatsApp</a></p>
     <p><strong>Email:</strong> <a href="mailto:rowdybro4444@gmail.com">rowdybro4444@gmail.com</a></p>
   </div>
+
+  <div class="map-section">
+    <h3>📍 Your Location on Map</h3>
+    <div id="mapContainer">
+      <p>Loading your location map...</p>
+    </div>
+  </div>
 </main>
 
 <footer>
   &copy; 2025 Roy Tours | All Rights Reserved
 </footer>
+
+<script>
+  function loadMap(lat, lon) {
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.google.com/maps?q=${lat},${lon}&z=15&output=embed`;
+    iframe.width = "100%";
+    iframe.height = "300";
+    iframe.style.border = "none";
+    iframe.style.borderRadius = "10px";
+    document.getElementById("mapContainer").innerHTML = "";
+    document.getElementById("mapContainer").appendChild(iframe);
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        loadMap(position.coords.latitude, position.coords.longitude);
+      },
+      () => {
+        document.getElementById("mapContainer").innerHTML = "<p>Couldn't detect location. Please allow location access.</p>";
+      }
+    );
+  } else {
+    document.getElementById("mapContainer").innerHTML = "<p>Your browser doesn't support geolocation.</p>";
+  }
+</script>
 
 </body>
 </html>
